@@ -1,0 +1,10 @@
+default:
+  image: node:20.10.0
+
+deploy_production:
+  stage: deploy
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=Q64YiK7Th72hVVPWbIvuGHrL
+    - vercel build --prod --token=Q64YiK7Th72hVVPWbIvuGHrL
+    - vercel deploy --prebuilt --prod --token=Q64YiK7Th72hVVPWbIvuGHrL
