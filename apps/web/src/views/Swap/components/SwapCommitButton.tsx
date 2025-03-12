@@ -259,7 +259,7 @@ export default function SwapCommitButton({
             </Text>
           </Box>
         )}
-        <CommitButton width="100%" disabled={Boolean(wrapInputError) || isKKubKyc} onClick={onWrap}>
+        <CommitButton width="100%" disabled={Boolean(wrapInputError) || !isKKubKyc} onClick={onWrap}>
           {wrapInputError ?? (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
         </CommitButton>
       </>
