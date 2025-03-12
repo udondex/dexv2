@@ -64,6 +64,7 @@ import {
 } from 'utils/contractHelpers'
 import { useSigner } from 'wagmi'
 import kkubAbi from 'config/abi/kkubAbi.json'
+import kusdtAbi from 'config/abi/kusdtAbi.json'
 import kkubKycAbi from 'config/abi/kkubKycAbi.json'
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
@@ -318,6 +319,10 @@ export function useContract<T extends Contract = Contract>(
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
   return useContract<Erc20>(tokenAddress, ERC20_ABI, withSignerIfPossible)
+}
+
+export function useKUSDTContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
+  return useContract<Erc20>(tokenAddress, kusdtAbi, withSignerIfPossible)
 }
 
 export function useKKUBContract(tokenAddress?: string, withSignerIfPossible?: boolean) {
