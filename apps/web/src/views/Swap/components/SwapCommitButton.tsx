@@ -172,7 +172,7 @@ export default function SwapCommitButton({
   // End Modals
   const { chainId } = useActiveChainId()
   const kkubKycContract = useKkubKycContract(
-    chainId === 96 ? '0xc7fbada38196361a24b9854f59eed294aea7d354' : '0x988bc9c05f0e0fbc198a5db0bd62ca90dc3e1b05',
+    chainId === 96 ? '0x409CF41ee862Df7024f289E9F2Ea2F5d0D7f3eb4' : '0x988bc9c05f0e0fbc198a5db0bd62ca90dc3e1b05',
   )
 
   const { data: kycLevel } = useSWR(['kycsLevel', account], async () => {
@@ -183,10 +183,9 @@ export default function SwapCommitButton({
       }
 
       // Make sure account is a valid address format
-      const response = await kkubKycContract.kycsLevel(account)
+      const response = await kkubKycContract.isAddressKyc(account)
       return response
     } catch (err) {
-      console.error('Error calling kycsLevel:', err)
       return null
     }
   })
@@ -202,7 +201,8 @@ export default function SwapCommitButton({
     const isOutputOnBkc = outputCurrency.symbol === 'KUB'
     const isInputOnKkubChain = inputCurrency.symbol === 'KKUB'
 
-    return wrapType === WrapType.UNWRAP && isOutputOnBkc && isInputOnKkubChain && kycLevel.isZero()
+
+    return wrapType === WrapType.UNWRAP && isOutputOnBkc && isInputOnKkubChain && kycLevel
   }, [currencies, kycLevel, wrapType])
 
   const onSwapHandler = useCallback(() => {
@@ -249,7 +249,7 @@ export default function SwapCommitButton({
   if (showWrap) {
     return (
       <>
-        {isKKubKyc && wrapType === WrapType.UNWRAP && (
+        {!isKKubKyc && wrapType === WrapType.UNWRAP && (
           <Box my="1rem" bg="warning" p="0.5rem" borderRadius="0.5rem">
             <Text color="textSubtle" fontSize="12px" textAlign="center">
               {t('Please complete KYC verification for your address using the link below before unwrapping: ')}
