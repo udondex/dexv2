@@ -202,7 +202,7 @@ export default function SwapForm() {
   }, [hasAmount, refreshBlockNumber])
 
   return (
-    <>
+    <div className="col gap-10">
       <CurrencyInputHeader
         title={t('Swap')}
         subtitle={t('Trade tokens in an instant hhhhhh')}
@@ -330,6 +330,6 @@ export default function SwapForm() {
       ) : (
         <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
       )}
-    </>
+    </div>
   )
 }
