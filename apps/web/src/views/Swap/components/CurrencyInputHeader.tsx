@@ -27,18 +27,6 @@ interface Props {
   onRefreshPrice: () => void
 }
 
-const ColoredIconButton = styled(IconButton)`
-  color: ${({ theme }) => theme.colors.textSubtle};
-`
-
-const settingBar = styled.div`
-  background-color: ${({ theme }) => `${theme.colors.failure33}`};
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: ;
-`
-
 const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
   title,
   subtitle,
