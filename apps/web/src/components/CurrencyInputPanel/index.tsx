@@ -145,63 +145,65 @@ export default function CurrencyInputPanel({
     <Box position="relative" id={id}>
       <Flex alignItems="center" justifyContent="space-between">
         <Flex>
-          {beforeButton}
-          <CurrencySelectButton
-            zapStyle={zapStyle}
-            className="open-currency-select-button"
-            selected={!!currency}
-            onClick={() => {
-              if (!disableCurrencySelect) {
-                onPresentCurrencyModal()
-              }
-            }}
-          >
-            <Flex alignItems="center" justifyContent="space-between">
-              {pair ? (
-                <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
-              ) : currency ? (
-                <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
-              ) : null}
-              {pair ? (
-                <Text id="pair" bold>
-                  {pair?.token0.symbol}:{pair?.token1.symbol}
-                </Text>
-              ) : (
-                <Text id="pair" bold>
-                  {(currency && currency.symbol && currency.symbol.length > 20
-                    ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
-                        currency.symbol.length - 5,
-                        currency.symbol.length,
-                      )}`
-                    : currency?.symbol) || t('Select a currency')}
-                </Text>
-              )}
-              {!disableCurrencySelect && <ChevronDownIcon />}
-            </Flex>
-          </CurrencySelectButton>
-          {token && tokenAddress ? (
-            <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
-              <CopyButton
-                width="16px"
-                buttonColor="textSubtle"
-                text={tokenAddress}
-                tooltipMessage={t('Token address copied')}
-                tooltipTop={-20}
-                tooltipRight={40}
-                tooltipFontSize={12}
-              />
-              <AddToWalletButton
-                variant="text"
-                p="0"
-                height="auto"
-                width="fit-content"
-                tokenAddress={tokenAddress}
-                tokenSymbol={token.symbol}
-                tokenDecimals={token.decimals}
-                tokenLogo={token instanceof WrappedTokenInfo ? token.logoURI : undefined}
-              />
-            </Flex>
-          ) : null}
+          <>
+            {beforeButton}
+            <CurrencySelectButton
+              zapStyle={zapStyle}
+              className="open-currency-select-button"
+              selected={!!currency}
+              onClick={() => {
+                if (!disableCurrencySelect) {
+                  onPresentCurrencyModal()
+                }
+              }}
+            >
+              <Flex alignItems="center" justifyContent="space-between">
+                {pair ? (
+                  <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={16} margin />
+                ) : currency ? (
+                  <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} />
+                ) : null}
+                {pair ? (
+                  <Text id="pair" bold>
+                    {pair?.token0.symbol}:{pair?.token1.symbol}
+                  </Text>
+                ) : (
+                  <Text id="pair" bold>
+                    {(currency && currency.symbol && currency.symbol.length > 20
+                      ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
+                          currency.symbol.length - 5,
+                          currency.symbol.length,
+                        )}`
+                      : currency?.symbol) || t('Select a currency')}
+                  </Text>
+                )}
+                {!disableCurrencySelect && <ChevronDownIcon />}
+              </Flex>
+            </CurrencySelectButton>
+            {token && tokenAddress ? (
+              <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
+                <CopyButton
+                  width="16px"
+                  buttonColor="textSubtle"
+                  text={tokenAddress}
+                  tooltipMessage={t('Token address copied')}
+                  tooltipTop={-20}
+                  tooltipRight={40}
+                  tooltipFontSize={12}
+                />
+                <AddToWalletButton
+                  variant="text"
+                  p="0"
+                  height="auto"
+                  width="fit-content"
+                  tokenAddress={tokenAddress}
+                  tokenSymbol={token.symbol}
+                  tokenDecimals={token.decimals}
+                  tokenLogo={token instanceof WrappedTokenInfo ? token.logoURI : undefined}
+                />
+              </Flex>
+            ) : null}
+          </>
         </Flex>
         {account && (
           <Text
