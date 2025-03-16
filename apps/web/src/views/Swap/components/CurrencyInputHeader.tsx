@@ -31,6 +31,14 @@ const ColoredIconButton = styled(IconButton)`
   color: ${({ theme }) => theme.colors.textSubtle};
 `
 
+const settingBar = styled.div`
+  background-color: ${({ theme }) => `${theme.colors.failure33}`};
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: ;
+`
+
 const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
   title,
   subtitle,
@@ -46,40 +54,20 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
   const handleOnClick = useCallback(() => onRefreshPrice?.(), [onRefreshPrice])
 
   return (
-    <Swap.CurrencyInputHeader
-      title={
-        <Flex width="100%" alignItems="center" justifyContent="flex-end">
-          {isChartSupported && setIsChartDisplayed && (
-            <ColoredIconButton onClick={toggleChartDisplayed} variant="text" scale="sm">
-              {isChartDisplayed ? (
-                <ChartDisableIcon color="textSubtle" />
-              ) : (
-                <ChartIcon width="24px" color="textSubtle" />
-              )}
-            </ColoredIconButton>
-          )}
-          <Flex flexDirection="column" alignItems="flex-end" width="100%" mr={18}>
-            <Swap.CurrencyInputHeaderTitle>{}</Swap.CurrencyInputHeaderTitle>
-          </Flex>
-          {/* <Flex flexDirection="column" alignItems="flex-end" width="100%" mr={18}>
-            <Swap.CurrencyInputHeaderTitle>{title}</Swap.CurrencyInputHeaderTitle>
-          </Flex> */}
-          <Flex>
-            {/* <IconButton onClick={onPresentTransactionsModal} variant="text" scale="sm">
-              <HistoryIcon color="textSubtle" width="24px" />
-            </IconButton> */}
-            <IconButton variant="text" scale="sm" onClick={handleOnClick}>
-              <RefreshIcon disabled={!hasAmount} color="textSubtle" width="27px" />
-            </IconButton>
-            <NotificationDot show={expertMode}>
-              <GlobalSettings color="textSubtle" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
-            </NotificationDot>
-          </Flex>
-        </Flex>
-      }
-      subtitle={<Swap.CurrencyInputHeaderSubTitle>{}</Swap.CurrencyInputHeaderSubTitle>}
-      // subtitle={<Swap.CurrencyInputHeaderSubTitle>{subtitle}</Swap.CurrencyInputHeaderSubTitle>}
-    />
+    <>
+      <>
+        {title}
+        {subtitle}
+      </>
+      <Flex justifyContent="flex-end">
+        <IconButton variant="text" scale="sm" onClick={handleOnClick}>
+          <RefreshIcon disabled={!hasAmount} color="textSubtle" width="27px" />
+        </IconButton>
+        <NotificationDot show={expertMode}>
+          <GlobalSettings color="textSubtle" mr="0" mode={SettingsMode.SWAP_LIQUIDITY} />
+        </NotificationDot>
+      </Flex>
+    </>
   )
 }
 

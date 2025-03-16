@@ -73,13 +73,13 @@ export default function Swap() {
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
             <StyledInputCurrencyWrapper pb={24} mt={isChartExpanded ? '24px' : '0'}>
-              <AppBody>
-                <SwapTab>
-                  {(swapTypeState) =>
-                    swapTypeState === SwapType.STABLE_SWAP ? <StableSwapFormContainer /> : <SwapForm />
-                  }
-                </SwapTab>
-              </AppBody>
+              {/* <AppBody> */}
+              <SwapTab>
+                {(swapTypeState) =>
+                  swapTypeState === SwapType.STABLE_SWAP ? <StableSwapFormContainer /> : <SwapForm />
+                }
+              </SwapTab>
+              {/* </AppBody> */}
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
           {/* {isChartExpanded && (

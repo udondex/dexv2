@@ -203,14 +203,10 @@ export default function SwapForm() {
 
   return (
     <div className="col gap-10">
-      <CurrencyInputHeader
-        title={t('Swap')}
-        subtitle={t('Trade tokens in an instant hhhhhh')}
-        hasAmount={hasAmount}
-        onRefreshPrice={onRefreshPrice}
-      />
+      <CurrencyInputHeader title={t('')} subtitle={t('')} hasAmount={hasAmount} onRefreshPrice={onRefreshPrice} />
       <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
         <AutoColumn gap="sm">
+          {/* from token */}
           <CurrencyInputPanel
             label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
             value={formattedAmounts[Field.INPUT]}
