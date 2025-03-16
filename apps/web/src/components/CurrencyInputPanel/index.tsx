@@ -20,8 +20,7 @@ const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: flex-end;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  justify-content: space-between;
 `
 const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })<{ zapStyle?: ZapStyle }>`
   padding: 0 0.5rem;
@@ -45,12 +44,61 @@ const LabelRow = styled.div`
   padding: 0.75rem 1rem 0 1rem;
 `
 const InputPanel = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  position: relative;
-  background-color: ${({ theme }) => theme.colors.backgroundAlt};
-  z-index: 1;
+  background-color: rgba(47, 48, 87, 0.7);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 17px 20px 18px;
+  gap: 17px;
 `
+const PercentageContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  width: 100%;
+`
+const ButtonPercentage = styled.div`
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-transform: none;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  min-width: 64px;
+  color: rgb(170, 179, 255);
+  width: 100%;
+  line-height: 1.65;
+  font-size: 13px;
+  outline: 0px;
+  margin: 0px;
+  text-decoration: none;
+  padding: 3px 9px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(170, 179, 255, 0.5);
+  border-image: initial;
+  border-radius: 12px;
+`
+// const InputPanel = styled.div`
+//   display: flex;
+//   flex-flow: column nowrap;
+//   position: relative;
+//   background-color: ${({ theme }) => theme.colors.backgroundAlt};
+//   z-index: 1;
+//   gap: 50px;
+//   padding: 25px 0px;
+// `
+
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.input};
@@ -144,6 +192,7 @@ export default function CurrencyInputPanel({
   return (
     <Box position="relative" id={id}>
       <Flex alignItems="center" justifyContent="space-between">
+        {/* Select Token */}
         <Flex>
           <>
             {beforeButton}
@@ -205,6 +254,7 @@ export default function CurrencyInputPanel({
             ) : null}
           </>
         </Flex>
+        {/* Balance */}
         {account && (
           <Text
             onClick={!disabled && onMax}
@@ -218,6 +268,7 @@ export default function CurrencyInputPanel({
           </Text>
         )}
       </Flex>
+      {/* Input amount */}
       <InputPanel>
         <Container as="label" zapStyle={zapStyle} error={error}>
           <LabelRow>
@@ -233,44 +284,25 @@ export default function CurrencyInputPanel({
             />
           </LabelRow>
           <InputRow selected={disableCurrencySelect}>
-            {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
+            {/* {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
               <Text fontSize="12px" color="textSubtle" mr="12px">
                 ~{formatNumber(amountInDollar)} USD
               </Text>
-            )}
+            )} */}
             {account && currency && selectedCurrencyBalance?.greaterThan(0) && !disabled && label !== 'To' && (
-              <Flex alignItems="right" justifyContent="right">
+              <PercentageContainer>
                 {showQuickInputButton &&
                   onPercentInput &&
-                  [25, 50, 75].map((percent) => (
-                    <Button
-                      key={`btn_quickCurrency${percent}`}
+                  [25, 50, 75, 100].map((percent) => (
+                    <ButtonPercentage
                       onClick={() => {
                         onPercentInput(percent)
                       }}
-                      scale="xs"
-                      mr="5px"
-                      variant="secondary"
-                      style={{ textTransform: 'uppercase' }}
                     >
                       {percent}%
-                    </Button>
+                    </ButtonPercentage>
                   ))}
-                {showMaxButton && (
-                  <Button
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      e.preventDefault()
-                      onMax?.()
-                    }}
-                    scale="xs"
-                    variant="secondary"
-                    style={{ textTransform: 'uppercase' }}
-                  >
-                    {t('Max')}
-                  </Button>
-                )}
-              </Flex>
+              </PercentageContainer>
             )}
           </InputRow>
         </Container>
