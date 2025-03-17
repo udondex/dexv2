@@ -15,6 +15,7 @@ import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
+import FlexRow from 'views/Predictions/components/FlexRow'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -54,10 +55,12 @@ const LabelRow = styled.div`
   line-height: 1rem;
 `
 const InputPanel = styled.div`
-  background-color: rgba(47, 48, 87, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 17px 20px 18px;
+  gap: 17px;
+  box-shadow: 0 0 6px #0000000d, 0 6px 10px #0000000a, 0 4px 10px #00000003;
 `
 const PercentageContainer = styled.div`
   display: flex;
@@ -110,13 +113,16 @@ const ButtonPercentage = styled.div`
 
 const Container = styled.div<{ zapStyle?: ZapStyle; error?: boolean }>`
   border-radius: 16px;
-  background-color: ${({ theme }) => theme.colors.input};
-  box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
+  // background-color: ${({ theme }) => theme.colors.input};
+  // box-shadow: ${({ theme, error }) => theme.shadows[error ? 'warning' : 'inset']};
   ${({ zapStyle }) =>
     !!zapStyle &&
     css`
       border-radius: 0px 16px 16px 16px;
     `};
+  display: grid;
+  grid-auto-rows: auto;
+  grid-row-gap: 17px;
 `
 
 const Overlay = styled.div`
@@ -202,7 +208,7 @@ export default function CurrencyInputPanel({
     <Box position="relative" id={id}>
       <Flex alignItems="center" justifyContent="space-between">
         {/* Balance */}
-        {account && (
+        {/* {account && (
           <Text
             onClick={!disabled && onMax}
             color="textSubtle"
@@ -213,7 +219,7 @@ export default function CurrencyInputPanel({
               ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
               : ' -'}
           </Text>
-        )}
+        )} */}
       </Flex>
       {/* Input amount */}
       <InputPanel>
@@ -293,40 +299,45 @@ export default function CurrencyInputPanel({
               </>
             </Flex>
           </LabelRow>
-          {account && (
-            <Text
-              onClick={!disabled && onMax}
-              color="textSubtle"
-              fontSize="14px"
-              style={{ display: 'inline', cursor: 'pointer' }}
-            >
-              {!hideBalance && !!currency
-                ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
-                : ' -'}
-            </Text>
-          )}
-          <InputRow selected={disableCurrencySelect}>
-            {/* {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
+          {/* Balance */}
+          <div>
+            {account && (
+              <Flex justifyContent="flex-end" marginBottom={`12px`}>
+                <Text
+                  onClick={!disabled && onMax}
+                  color="textSubtle"
+                  fontSize="14px"
+                  style={{ display: 'inline', cursor: 'pointer' }}
+                >
+                  {!hideBalance && !!currency
+                    ? t('Balance: %balance%', { balance: selectedCurrencyBalance?.toSignificant(6) ?? t('Loading') })
+                    : ' -'}
+                </Text>
+              </Flex>
+            )}
+            <InputRow selected={disableCurrencySelect}>
+              {/* {!!currency && showBUSD && Number.isFinite(amountInDollar) && (
               <Text fontSize="12px" color="textSubtle" mr="12px">
                 ~{formatNumber(amountInDollar)} USD
               </Text>
             )} */}
-            {account && currency && selectedCurrencyBalance?.greaterThan(0) && !disabled && label !== 'To' && (
-              <PercentageContainer>
-                {showQuickInputButton &&
-                  onPercentInput &&
-                  [25, 50, 75, 100].map((percent) => (
-                    <ButtonPercentage
-                      onClick={() => {
-                        onPercentInput(percent)
-                      }}
-                    >
-                      {percent}%
-                    </ButtonPercentage>
-                  ))}
-              </PercentageContainer>
-            )}
-          </InputRow>
+              {account && currency && selectedCurrencyBalance?.greaterThan(0) && !disabled && label !== 'To' && (
+                <PercentageContainer>
+                  {showQuickInputButton &&
+                    onPercentInput &&
+                    [25, 50, 75, 100].map((percent) => (
+                      <ButtonPercentage
+                        onClick={() => {
+                          onPercentInput(percent)
+                        }}
+                      >
+                        {percent}%
+                      </ButtonPercentage>
+                    ))}
+                </PercentageContainer>
+              )}
+            </InputRow>
+          </div>
         </Container>
         {disabled && <Overlay />}
       </InputPanel>

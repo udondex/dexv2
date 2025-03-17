@@ -47,7 +47,7 @@ const CurrencyInputHeader: React.FC<React.PropsWithChildren<Props>> = ({
         {title}
         {subtitle}
       </>
-      <Flex justifyContent="flex-end">
+      <Flex justifyContent="flex-end" marginBottom={`10px`}>
         <IconButton variant="text" scale="sm" onClick={handleOnClick}>
           <RefreshIcon disabled={!hasAmount} color="textSubtle" width="27px" />
         </IconButton>
