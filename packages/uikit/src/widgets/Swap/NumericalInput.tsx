@@ -11,6 +11,7 @@ export const NumericalInput = memo(function InnerInput({
   onUserInput,
   placeholder,
   error,
+  fontSize,
   align,
   className,
   ...rest
@@ -18,7 +19,7 @@ export const NumericalInput = memo(function InnerInput({
   value: string | number;
   onUserInput: (input: string) => void;
   error?: boolean;
-  fontSize?: string;
+  fontSize?: "md" | "lg";
   align?: "right" | "left";
 } & Omit<React.HTMLProps<HTMLInputElement>, "ref" | "onChange" | "as">) {
   const enforcer = (nextUserInput: string) => {
@@ -36,6 +37,7 @@ export const NumericalInput = memo(function InnerInput({
         inputVariants({
           error,
           align,
+          fontSize,
         })
       )}
       {...rest}
@@ -51,6 +53,7 @@ export const NumericalInput = memo(function InnerInput({
       autoCorrect="off"
       // text-specific options
       type="text"
+      // style="font-size:25px;"
       pattern="^[0-9]*[.,]?[0-9]*$"
       placeholder={placeholder || "0.0"}
       minLength={1}

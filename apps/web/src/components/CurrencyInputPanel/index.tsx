@@ -15,7 +15,6 @@ import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
-import FlexRow from 'views/Predictions/components/FlexRow'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -29,7 +28,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
   padding: 0px 10px;
   outline: none;
   border: 1px solid transparent;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 18px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
   backdrop-filter: blur(4px);
   opacity: 1;
   ${({ zapStyle, theme }) =>
@@ -42,7 +41,7 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
       height: auto;
     `};
 `
-const BalanceText = styled.div`
+const InputText = styled.div`
   font-size: 30px;
   color: rgb(223, 223, 233);
 `
@@ -51,11 +50,12 @@ const LabelRow = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   color: ${({ theme }) => theme.colors.text};
-  font-size: 0.75rem;
+  font-size: 0.75rem=;
   line-height: 1rem;
 `
 const InputPanel = styled.div`
   background-color: rgba(255, 255, 255, 0.7);
+  font-size: 30px
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 17px 20px 18px;
@@ -224,18 +224,28 @@ export default function CurrencyInputPanel({
       {/* Input amount */}
       <InputPanel>
         <Container as="label" zapStyle={zapStyle} error={error}>
+          <Flex alignItems="center" justifyContent="space-between">
+            {label !== 'To' ? <p>From</p> : <p>To</p>}
+            <div>
+              <button>KUB</button>
+              <button>KKUB</button>
+              <button>KUSDC</button>
+            </div>
+          </Flex>
           <LabelRow>
             <NumericalInput
               error={error}
               disabled={disabled}
               className="token-amount-input"
               align="left"
+              fontSize="lg"
               value={value}
               onBlur={onInputBlur}
               onUserInput={(val) => {
                 onUserInput(val)
               }}
             />
+            <p>test</p>
             {/* Select Token */}
             <Flex>
               <>
