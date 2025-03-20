@@ -19,6 +19,7 @@ const Row = styled(Box)<{
 `
 
 export const RowBetween = styled(Row)`
+  width: '100%';
   justify-content: space-between;
 `
 

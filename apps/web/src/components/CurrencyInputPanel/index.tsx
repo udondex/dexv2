@@ -245,7 +245,6 @@ export default function CurrencyInputPanel({
                 onUserInput(val)
               }}
             />
-            <p>test</p>
             {/* Select Token */}
             <Flex>
               <>

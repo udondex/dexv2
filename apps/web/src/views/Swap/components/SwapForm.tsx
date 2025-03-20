@@ -36,6 +36,8 @@ import { useStableFarms } from '../StableSwap/hooks/useStableConfig'
 import { isAddress } from '../../../utils'
 import { SwapFeaturesContext } from '../SwapFeaturesContext'
 
+import styled from 'styled-components'
+
 export default function SwapForm() {
   const { isAccessTokenSupported } = useContext(SwapFeaturesContext)
   const { t } = useTranslation()
@@ -201,11 +203,20 @@ export default function SwapForm() {
     }
   }, [hasAmount, refreshBlockNumber])
 
+  const DetailsSection = styled.div`
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: ${({ theme }) => theme.colors.invertedContrast};
+    transition: transform 300ms ease-in-out;
+  `
+
   return (
     <div className="col gap-10">
       <CurrencyInputHeader title={t('')} subtitle={t('')} hasAmount={hasAmount} onRefreshPrice={onRefreshPrice} />
       <Wrapper id="swap-page" style={{ minHeight: '412px' }}>
-        <AutoColumn gap="sm">
+        <AutoColumn gap="md">
           {/* from token */}
           <CurrencyInputPanel
             label={independentField === Field.OUTPUT && !showWrap && trade ? t('From (estimated)') : t('From')}
@@ -273,23 +284,56 @@ export default function SwapForm() {
             </>
           ) : null}
 
-          {showWrap ? null : (
-            <SwapUI.Info
-              price={
-                Boolean(trade) && (
-                  <>
-                    <SwapUI.InfoLabel>{t('Price')}</SwapUI.InfoLabel>
-                    {isLoading ? (
-                      <Skeleton width="100%" ml="8px" height="24px" />
-                    ) : (
-                      <SwapUI.TradePrice price={trade?.executionPrice} />
-                    )}
-                  </>
-                )
-              }
-              allowedSlippage={allowedSlippage}
-            />
+          {/* Detail Section */}
+          {!swapIsUnsupported ? (
+            trade && (
+              <DetailsSection>
+                {showWrap ? null : (
+                  <SwapUI.Info
+                    price={
+                      Boolean(trade) && (
+                        <>
+                          <SwapUI.InfoLabel>{t('Price')}</SwapUI.InfoLabel>
+                          {isLoading ? (
+                            <Skeleton width="100%" ml="8px" height="24px" />
+                          ) : (
+                            <SwapUI.TradePrice price={trade?.executionPrice} />
+                          )}
+                        </>
+                      )
+                    }
+                    allowedSlippage={allowedSlippage}
+                  />
+                )}
+                <AdvancedSwapDetailsDropdown trade={trade} />
+              </DetailsSection>
+            )
+          ) : (
+            <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
           )}
+          {/* Button */}
+          <Box>
+            <SwapCommitButton
+              swapIsUnsupported={swapIsUnsupported}
+              account={account}
+              showWrap={showWrap}
+              wrapInputError={wrapInputError}
+              onWrap={onWrap}
+              wrapType={wrapType}
+              parsedIndepentFieldAmount={parsedAmounts[independentField]}
+              approval={approval}
+              approveCallback={approveCallback}
+              approvalSubmitted={approvalSubmitted}
+              currencies={currencies}
+              isExpertMode={isExpertMode}
+              trade={trade}
+              swapInputError={swapInputError}
+              currencyBalances={currencyBalances}
+              recipient={recipient}
+              allowedSlippage={allowedSlippage}
+              onUserInput={onUserInput}
+            />
+          </Box>
         </AutoColumn>
         {hasStableSwapAlternative && (
           <AutoColumn>
@@ -298,34 +342,7 @@ export default function SwapForm() {
             </Message>
           </AutoColumn>
         )}
-        <Box mt="0.25rem">
-          <SwapCommitButton
-            swapIsUnsupported={swapIsUnsupported}
-            account={account}
-            showWrap={showWrap}
-            wrapInputError={wrapInputError}
-            onWrap={onWrap}
-            wrapType={wrapType}
-            parsedIndepentFieldAmount={parsedAmounts[independentField]}
-            approval={approval}
-            approveCallback={approveCallback}
-            approvalSubmitted={approvalSubmitted}
-            currencies={currencies}
-            isExpertMode={isExpertMode}
-            trade={trade}
-            swapInputError={swapInputError}
-            currencyBalances={currencyBalances}
-            recipient={recipient}
-            allowedSlippage={allowedSlippage}
-            onUserInput={onUserInput}
-          />
-        </Box>
       </Wrapper>
-      {!swapIsUnsupported ? (
-        trade && <AdvancedSwapDetailsDropdown trade={trade} />
-      ) : (
-        <UnsupportedCurrencyFooter currencies={[currencies.INPUT, currencies.OUTPUT]} />
-      )}
     </div>
   )
 }

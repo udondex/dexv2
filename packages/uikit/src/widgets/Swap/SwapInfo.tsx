@@ -20,12 +20,12 @@ export const SwapInfo = ({ allowedSlippage, price }: SwapInfoType) => {
     <AutoColumn gap="sm" py="0" px="16px">
       <RowBetween alignItems="center">{price}</RowBetween>
       <RowBetween alignItems="center">
-        <SwapInfoLabel>{t("Slippage Tolerance")}</SwapInfoLabel>
-        {isMounted && (
+        {/* <SwapInfoLabel>{t("Slippage Tolerance")}</SwapInfoLabel> */}
+        {/* {isMounted && (
           <Text bold color="primary">
             {allowedSlippage / 100}%
           </Text>
-        )}
+        )} */}
       </RowBetween>
     </AutoColumn>
   );

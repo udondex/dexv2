@@ -5,7 +5,7 @@ import { useTranslation } from '@pancakeswap/localization'
 import { useUserSlippageTolerance } from 'state/user/hooks'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from 'utils/exchange'
 import { AutoColumn } from 'components/Layout/Column'
-import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE, BUYBACK_FEE } from 'config/constants/info'
+import { TOTAL_FEE, LP_HOLDERS_FEE, TREASURY_FEE } from 'config/constants/info'
 import { RowBetween, RowFixed } from 'components/Layout/Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
@@ -27,7 +27,7 @@ function TradeSummary({
   const treasuryFeePercent = `${(TREASURY_FEE * 100).toFixed(2)}%`
 
   return (
-    <AutoColumn style={{ padding: '0 16px' }}>
+    <AutoColumn style={{ padding: '0 16px', gap: '6px' }}>
       <RowBetween>
         <RowFixed>
           <Text fontSize="14px" color="textSubtle">
