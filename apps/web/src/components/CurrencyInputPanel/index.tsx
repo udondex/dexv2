@@ -16,6 +16,8 @@ import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
 
 import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
+import Image from 'next/image'
+
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
@@ -226,11 +228,72 @@ export default function CurrencyInputPanel({
         <Container as="label" zapStyle={zapStyle} error={error}>
           <Flex alignItems="center" justifyContent="space-between">
             {label !== 'To' ? <p>From</p> : <p>To</p>}
-            <div>
-              <button>KUB</button>
-              <button>KKUB</button>
-              <button>KUSDC</button>
-            </div>
+            <Flex alignItems="center" style={{ gap: '10px' }}>
+              <div
+                onClick={() => console.log('Clicked! KUB')}
+                style={{
+                  borderRadius: '50%',
+                  border: '4px solid #E5E7EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              >
+                <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
+              </div>
+              <div
+                onClick={() => console.log('Clicked! KKUB')}
+                style={{
+                  borderRadius: '50%',
+                  border: '4px solid #E5E7EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              >
+                <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
+              </div>
+              <div
+                onClick={() => console.log('Clicked! KUBSC')}
+                style={{
+                  borderRadius: '50%',
+                  border: '4px solid #E5E7EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              >
+                <Image src="/KUSDC.png" alt="Share" width={22} height={22} className="rounded-full" />
+              </div>
+              <div
+                onClick={() => console.log('Clicked! KUSDT')}
+                style={{
+                  borderRadius: '50%',
+                  border: '4px solid #E5E7EB',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              >
+                <Image src="/KUSDT.png" alt="Share" width={22} height={22} className="rounded-full" />
+              </div>
+            </Flex>
           </Flex>
           <LabelRow>
             <NumericalInput

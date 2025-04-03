@@ -52,6 +52,7 @@ const config: (
       label: t('Trade'),
       icon: SwapIcon,
       fillIcon: SwapFillIcon,
+      isNewTab: false,
       href: '/swap',
       showItemsOnMobile: false,
       items: [
@@ -161,6 +162,14 @@ const config: (
     //   type: DropdownMenuItemType.INTERNAL_LINK,
     //   items: [],
     // },
+    {
+      label: t('Liquidity'),
+      href: '/liquidity',
+      isNewTab: false,
+      icon: MoreIcon,
+      showItemsOnMobile: false,
+      items: [],
+    },
     {
       label: 'Bridge',
       href: 'https://bridge.bitkubchain.com',

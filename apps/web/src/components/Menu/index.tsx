@@ -33,6 +33,8 @@ const Menu = (props) => {
     return footerLinks(t)
   }, [t])
 
+  console.log(activeMenuItem)
+
   return (
     <>
       <UikitMenu
@@ -61,6 +63,11 @@ const Menu = (props) => {
         {...props}
       />
     </>
+    // <>
+    //   {/* <GlobalSettings mode={SettingsMode.GLOBAL} /> */}
+    //   <NetworkSwitcher />
+    //   <UserMenu />
+    // </>
   )
 }
 

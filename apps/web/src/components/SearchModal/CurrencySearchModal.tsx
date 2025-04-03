@@ -23,6 +23,9 @@ import Manage from './Manage'
 import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
 
+import Column, { AutoColumn } from '../Layout/Column'
+import { AutoRow } from '../Layout/Row'
+
 const Footer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
@@ -31,8 +34,8 @@ const Footer = styled.div`
 const StyledModalContainer = styled(ModalContainer)`
   width: 100%;
   min-width: 320px;
-  max-width: 420px !important;
-  min-height: calc(var(--vh, 1vh) * 90);
+  max-width: 488px !important;
+  min-height: calc(var(--vh, 1vh) * 80);
   ${({ theme }) => theme.mediaQueries.md} {
     min-height: auto;
   }
@@ -120,14 +123,28 @@ export default function CurrencySearchModal({
       ref={wrapperRef}
     >
       <ModalHeader>
-        <ModalTitle>
-          {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
-          <Heading>{config[modalView].title}</Heading>
-        </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <AutoColumn style={{ width: '100%' }}>
+          <AutoRow>
+            <ModalTitle>
+              {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
+              <Heading>{config[modalView].title}</Heading>
+            </ModalTitle>
+            <ModalCloseButton onDismiss={onDismiss} />
+          </AutoRow>
+          <CurrencySearch
+            onCurrencySelect={handleCurrencySelect}
+            selectedCurrency={selectedCurrency}
+            otherSelectedCurrency={otherSelectedCurrency}
+            showCommonBases={showCommonBases}
+            commonBasesType={commonBasesType}
+            showImportView={() => setModalView(CurrencyModalView.importToken)}
+            setImportToken={setImportToken}
+            height={height}
+          />
+        </AutoColumn>
       </ModalHeader>
       <StyledModalBody>
-        {modalView === CurrencyModalView.search ? (
+        {/* {modalView === CurrencyModalView.search ? (
           <CurrencySearch
             onCurrencySelect={handleCurrencySelect}
             selectedCurrency={selectedCurrency}
@@ -151,7 +168,7 @@ export default function CurrencySearchModal({
           />
         ) : (
           ''
-        )}
+        )} */}
         {modalView === CurrencyModalView.search && (
           <Footer>
             <Button

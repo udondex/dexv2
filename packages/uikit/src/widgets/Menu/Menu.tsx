@@ -29,11 +29,9 @@ const StyledNav = styled.nav`
   width: 100%;
   height: ${MENU_HEIGHT}px;
   background-color: ${({ theme }) => theme.nav.background};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transform: translate3d(0, 0, 0);
-
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 1px 20px 1px 20px;
+  border-radius: 20px;
 `;
 
 const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
@@ -44,6 +42,7 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   height: ${({ height }) => `${height}px`};
   width: 100%;
   z-index: 20;
+  padding: 9px 12px 9px 1rem;
 `;
 
 const TopBannerContainer = styled.div<{ height: number }>`
