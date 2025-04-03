@@ -15,6 +15,8 @@ import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_M
 import { MenuContext } from "./context";
 import { NavProps } from "./types";
 
+import Link from "next/link";
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -140,26 +142,21 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
           <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
             {banner && isMounted && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
             <StyledNav>
-              <Flex>
+              <Flex alignItems="center" style={{ gap: "20px" }}>
                 <Logo href={homeLink?.href ?? "/"} />
-                <AtomBox display={{ xs: "none", md: "block" }}>
+                {/* <AtomBox display={{ xs: "none", md: "block" }}>
                   <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
-                </AtomBox>
+                </AtomBox> */}
+                <Link href="/swap">Trade</Link>
+                <Link href="/liquidity">Liquidity</Link>
+                <a href="https://bridge.kubchain.com/" target="_blank" rel="noopener noreferrer">
+                  Bridge
+                </a>
+                <a href="https://bitkubchain.banxa.com/" target="_blank" rel="noopener noreferrer">
+                  Buy Crypto
+                </a>
               </Flex>
               <Flex alignItems="center" height="100%">
-                {/* <AtomBox mr="12px" display={{ xs: "none", lg: "block" }}>
-                  <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
-                </AtomBox>
-                <Box mt="4px">
-                  <LangSelector
-                    currentLang={currentLang}
-                    langs={langs}
-                    setLang={setLang}
-                    buttonScale="xs"
-                    color="textSubtle"
-                    hideLanguage
-                  />
-                </Box> */}
                 {rightSide}
               </Flex>
             </StyledNav>
