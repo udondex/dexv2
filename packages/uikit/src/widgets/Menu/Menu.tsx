@@ -88,6 +88,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
   const { isMobile } = useMatchBreakpoints();
   const isMounted = useIsMounted();
   const [showMenu, setShowMenu] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
 
   const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
@@ -123,6 +124,17 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
     };
   }, [totalTopMenuHeight]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsVisible(window.innerWidth > 850); // Hide if width < 600px
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
@@ -147,14 +159,20 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                 {/* <AtomBox display={{ xs: "none", md: "block" }}>
                   <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
                 </AtomBox> */}
-                <Link href="/swap">Trade</Link>
-                <Link href="/liquidity">Liquidity</Link>
-                <a href="https://bridge.kubchain.com/" target="_blank" rel="noopener noreferrer">
-                  Bridge
-                </a>
-                <a href="https://bitkubchain.banxa.com/" target="_blank" rel="noopener noreferrer">
-                  Buy Crypto
-                </a>
+
+                {/* Hardcode for Nav bar */}
+                {isVisible && (
+                  <>
+                    <Link href="/swap">Trade</Link>
+                    <Link href="/liquidity">Liquidity</Link>
+                    <a href="https://bridge.kubchain.com/" target="_blank" rel="noopener noreferrer">
+                      Bridge
+                    </a>
+                    <a href="https://bitkubchain.banxa.com/" target="_blank" rel="noopener noreferrer">
+                      Buy Crypto
+                    </a>
+                  </>
+                )}
               </Flex>
               <Flex alignItems="center" height="100%">
                 {rightSide}
