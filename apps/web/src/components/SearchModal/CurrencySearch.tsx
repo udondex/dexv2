@@ -182,7 +182,7 @@ function CurrencySearch({
   const getCurrencyListRows = useCallback(() => {
     if (searchToken && !searchTokenIsAdded && !hasFilteredInactiveTokens) {
       return (
-        <Column style={{ padding: '20px 0', height: '100%', width: '100%' }}>
+        <Column style={{ padding: '20px 8px', height: '100%', width: '100%' }}>
           <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
         </Column>
       )
@@ -234,11 +234,11 @@ function CurrencySearch({
   return (
     <>
       <AutoColumn gap="16px">
-        <AutoColumn style={{ padding: '12px 24px 16px' }} gap="12px">
+        <AutoColumn style={{ padding: '12px 24px 16px', backgroundColor: 'white' }} gap="12px">
           <Row>
             <Input
               id="token-search-input"
-              placeholder={t('Search name or paste address Oat')}
+              placeholder={t('Search name or paste address')}
               scale="lg"
               autoComplete="off"
               value={searchQuery}
@@ -260,7 +260,7 @@ function CurrencySearch({
         </AutoColumn>
       </AutoColumn>
       {/* Token List in modal */}
-      {getCurrencyListRows()}
+      <div style={{ padding: '12px 0px' }}>{getCurrencyListRows()}</div>
     </>
   )
 }

@@ -124,7 +124,7 @@ export default function CurrencySearchModal({
     >
       <ModalHeader>
         <AutoColumn style={{ width: '100%' }}>
-          <AutoRow style={{ padding: '12px 8px 0px 8px' }}>
+          <AutoRow style={{ padding: '12px 8px 0px 8px', backgroundColor: 'white' }}>
             <ModalTitle style={{ padding: '0px 0px 0px 14px' }}>
               {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
               <Heading>{config[modalView].title}</Heading>
