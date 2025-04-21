@@ -124,8 +124,8 @@ export default function CurrencySearchModal({
     >
       <ModalHeader>
         <AutoColumn style={{ width: '100%' }}>
-          <AutoRow>
-            <ModalTitle>
+          <AutoRow style={{ padding: '12px 8px 0px 8px' }}>
+            <ModalTitle style={{ padding: '0px 0px 0px 14px' }}>
               {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
               <Heading>{config[modalView].title}</Heading>
             </ModalTitle>
@@ -143,32 +143,7 @@ export default function CurrencySearchModal({
           />
         </AutoColumn>
       </ModalHeader>
-      <StyledModalBody>
-        {/* {modalView === CurrencyModalView.search ? (
-          <CurrencySearch
-            onCurrencySelect={handleCurrencySelect}
-            selectedCurrency={selectedCurrency}
-            otherSelectedCurrency={otherSelectedCurrency}
-            showCommonBases={showCommonBases}
-            commonBasesType={commonBasesType}
-            showImportView={() => setModalView(CurrencyModalView.importToken)}
-            setImportToken={setImportToken}
-            height={height}
-          />
-        ) : modalView === CurrencyModalView.importToken && importToken ? (
-          <ImportToken tokens={[importToken]} handleCurrencySelect={handleCurrencySelect} />
-        ) : modalView === CurrencyModalView.importList && importList && listURL ? (
-          <ImportList list={importList} listURL={listURL} onImport={() => setModalView(CurrencyModalView.manage)} />
-        ) : modalView === CurrencyModalView.manage ? (
-          <Manage
-            setModalView={setModalView}
-            setImportToken={setImportToken}
-            setImportList={setImportList}
-            setListUrl={setListUrl}
-          />
-        ) : (
-          ''
-        )} */}
+      {/* <StyledModalBody>
         {modalView === CurrencyModalView.search && (
           <Footer>
             <Button
@@ -181,7 +156,7 @@ export default function CurrencySearchModal({
             </Button>
           </Footer>
         )}
-      </StyledModalBody>
+      </StyledModalBody> */}
     </StyledModalContainer>
   )
 }
