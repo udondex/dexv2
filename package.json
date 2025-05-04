@@ -49,5 +49,7 @@
   "volta": {
     "node": "16.18.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "tsx": "^4.19.4"
+  }
 }
