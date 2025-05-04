@@ -73,6 +73,7 @@ export default function CurrencySearchModal({
     (currency: Currency) => {
       onDismiss?.()
       onCurrencySelect(currency)
+      console.log('2' + currency)
     },
     [onDismiss, onCurrencySelect],
   )

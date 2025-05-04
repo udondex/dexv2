@@ -18,6 +18,11 @@ import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
 import Image from 'next/image'
 
+///////////////
+import { ChainId, ERC20Token, KKUB } from '@pancakeswap/sdk'
+const usdt = new ERC20Token(ChainId.BKC_TESTNET, '0x866553520e991Ec3DD9750ace65Fe6E102bb1bAb', 18, 'USDT', 'Tether USD')
+const kkub = new ERC20Token(ChainId.BKC_TESTNET, '0x1de8A5c87d421f53eE4ae398cc766e62E88e9518', 18, 'KKUB', 'KKUB')
+
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
   flex-flow: row nowrap;
@@ -87,7 +92,7 @@ const ButtonPercentage = styled.div`
   font-family: Inter, sans-serif;
   font-weight: 600;
   min-width: 64px;
-  color: rgb(170, 179, 255);
+  color: ${({ theme }) => theme.colors.textSubtle};
   width: 100%;
   line-height: 1.65;
   font-size: 13px;
@@ -95,11 +100,9 @@ const ButtonPercentage = styled.div`
   margin: 0px;
   text-decoration: none;
   padding: 3px 9px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(170, 179, 255, 0.5);
+  border-color: ${({ theme }) => theme.colors.lightGray};
   border-image: initial;
   border-radius: 12px;
 `
@@ -246,7 +249,10 @@ export default function CurrencyInputPanel({
                 <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
               </div>
               <div
-                onClick={() => console.log('Clicked! KKUB')}
+                onClick={() => {
+                  onCurrencySelect(kkub)
+                  console.log('Clicked! KKUB')
+                }}
                 style={{
                   borderRadius: '50%',
                   border: '4px solid #E5E7EB',
@@ -346,7 +352,7 @@ export default function CurrencyInputPanel({
                   </Flex>
                 </CurrencySelectButton>
                 {token && tokenAddress ? (
-                  <Flex style={{ gap: '4px' }} ml="4px" alignItems="center">
+                  <Flex style={{ gap: '6px' }} ml="10px" alignItems="center">
                     <CopyButton
                       width="16px"
                       buttonColor="textSubtle"

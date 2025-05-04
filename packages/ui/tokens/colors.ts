@@ -21,6 +21,7 @@ export const additionalColors = {
   silver: '#C0C0C0',
   bronze: '#CD7F32',
   yellow: '#D67E0A',
+  lightGray: '#c8cdd8',
 }
 
 export const lightColors = {

@@ -33,7 +33,7 @@ const Menu = (props) => {
     return footerLinks(t)
   }, [t])
 
-  console.log(activeMenuItem)
+  // console.log(activeMenuItem)
 
   return (
     <>

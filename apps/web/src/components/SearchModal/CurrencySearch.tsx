@@ -137,8 +137,9 @@ function CurrencySearch({
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
+      // console.log('Currency' + currency)
     },
-    [audioPlay, onCurrencySelect],
+    [onCurrencySelect],
   )
 
   // manage focus on modal show
