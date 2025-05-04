@@ -18,10 +18,10 @@ import AddToWalletButton from '../AddToWallet/AddToWalletButton'
 
 import Image from 'next/image'
 
+import useNativeCurrency from 'hooks/useNativeCurrency'
+
 ///////////////
-import { ChainId, ERC20Token, KKUB } from '@pancakeswap/sdk'
-// const usdt = new ERC20Token(ChainId.BKC_TESTNET, '0x866553520e991Ec3DD9750ace65Fe6E102bb1bAb', 18, 'USDT', 'Tether USD')
-const kkub = new ERC20Token(ChainId.BKC, '0x67eBD850304c70d983B2d1b93ea79c7CD6c3F6b5', 18, 'KKUB', 'KKUB')
+import { ChainId, ERC20Token, Native, KUB } from '@pancakeswap/sdk'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -209,6 +209,12 @@ export default function CurrencyInputPanel({
     />,
   )
 
+  // const for preset token
+  const kub = useNativeCurrency()
+  const kkub = new ERC20Token(ChainId.BKC, '0x67eBD850304c70d983B2d1b93ea79c7CD6c3F6b5', 18, 'KKUB', 'KKUB')
+  const kusdc = new ERC20Token(ChainId.BKC, '0x77071ad51ca93fc90e77BCdECE5aa6F1B40fcb21', 18, 'KUSDC', 'KUSDC')
+  const kusdt = new ERC20Token(ChainId.BKC, '0x7d984C24d2499D840eB3b7016077164e15E5faA6', 18, 'KUSDT', 'KUSDT')
+
   return (
     <Box position="relative" id={id}>
       <Flex alignItems="center" justifyContent="space-between">
@@ -233,7 +239,10 @@ export default function CurrencyInputPanel({
             {label !== 'To' ? <p>From</p> : <p>To</p>}
             <Flex alignItems="center" style={{ gap: '10px' }}>
               <div
-                onClick={() => console.log('Clicked! KUB')}
+                onClick={() => {
+                  onCurrencySelect(kub)
+                  console.log('Clicked! KUB')
+                }}
                 style={{
                   borderRadius: '50%',
                   border: '4px solid #E5E7EB',
@@ -268,7 +277,10 @@ export default function CurrencyInputPanel({
                 <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
               </div>
               <div
-                onClick={() => console.log('Clicked! KUBSC')}
+                onClick={() => {
+                  onCurrencySelect(kusdc)
+                  console.log('Clicked! KUSC')
+                }}
                 style={{
                   borderRadius: '50%',
                   border: '4px solid #E5E7EB',
@@ -284,7 +296,10 @@ export default function CurrencyInputPanel({
                 <Image src="/KUSDC.png" alt="Share" width={22} height={22} className="rounded-full" />
               </div>
               <div
-                onClick={() => console.log('Clicked! KUSDT')}
+                onClick={() => {
+                  onCurrencySelect(kusdt)
+                  console.log('Clicked! KUSDT')
+                }}
                 style={{
                   borderRadius: '50%',
                   border: '4px solid #E5E7EB',
