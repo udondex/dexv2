@@ -246,7 +246,7 @@ export default function CurrencyInputPanel({
                 onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
                 onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
               >
-                <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
+                <img src="/KUB.png" alt="Share" width={22} height={22} className="rounded-full" />
               </div>
               <div
                 onClick={() => {

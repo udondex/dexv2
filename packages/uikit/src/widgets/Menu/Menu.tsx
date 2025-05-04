@@ -30,10 +30,11 @@ const StyledNav = styled.nav`
   align-items: center;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ theme }) => theme.nav.background};
+  background-color: rgba(255, 255, 255, 0.7);
   transform: translate3d(0, 0, 0);
   padding: 1px 20px 1px 20px;
   border-radius: 20px;
+  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
@@ -45,6 +46,7 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   width: 100%;
   z-index: 20;
   padding: 9px 12px 9px 1rem;
+  background: ${({ theme }) => theme.modal.background};
 `;
 
 const TopBannerContainer = styled.div<{ height: number }>`
