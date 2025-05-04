@@ -15,6 +15,8 @@ import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_M
 import { MenuContext } from "./context";
 import { NavProps } from "./types";
 
+import Link from "next/link";
+
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -28,12 +30,11 @@ const StyledNav = styled.nav`
   align-items: center;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ theme }) => theme.nav.background};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
+  background-color: rgba(255, 255, 255, 0.7);
   transform: translate3d(0, 0, 0);
-
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 1px 20px 1px 20px;
+  border-radius: 20px;
+  box-shadow: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
 `;
 
 const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
@@ -44,6 +45,8 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   height: ${({ height }) => `${height}px`};
   width: 100%;
   z-index: 20;
+  padding: 9px 12px 9px 1rem;
+  background: ${({ theme }) => theme.modal.background};
 `;
 
 const TopBannerContainer = styled.div<{ height: number }>`
@@ -87,6 +90,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
   const { isMobile } = useMatchBreakpoints();
   const isMounted = useIsMounted();
   const [showMenu, setShowMenu] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   const refPrevOffset = useRef(typeof window === "undefined" ? 0 : window.pageYOffset);
 
   const topBannerHeight = isMobile ? TOP_BANNER_HEIGHT_MOBILE : TOP_BANNER_HEIGHT;
@@ -122,6 +126,17 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
     };
   }, [totalTopMenuHeight]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsVisible(window.innerWidth > 850); // Hide if width < 600px
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
@@ -141,26 +156,27 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
           <FixedContainer showMenu={showMenu} height={totalTopMenuHeight}>
             {banner && isMounted && <TopBannerContainer height={topBannerHeight}>{banner}</TopBannerContainer>}
             <StyledNav>
-              <Flex>
+              <Flex alignItems="center" style={{ gap: "20px" }}>
                 <Logo href={homeLink?.href ?? "/"} />
-                <AtomBox display={{ xs: "none", md: "block" }}>
+                {/* <AtomBox display={{ xs: "none", md: "block" }}>
                   <MenuItems items={links} activeItem={activeItem} activeSubItem={activeSubItem} ml="24px" />
-                </AtomBox>
+                </AtomBox> */}
+
+                {/* Hardcode for Nav bar */}
+                {isVisible && (
+                  <>
+                    <Link href="/swap">Trade</Link>
+                    <Link href="/liquidity">Liquidity</Link>
+                    <a href="https://bridge.kubchain.com/" target="_blank" rel="noopener noreferrer">
+                      Bridge
+                    </a>
+                    <a href="https://bitkubchain.banxa.com/" target="_blank" rel="noopener noreferrer">
+                      Buy Crypto
+                    </a>
+                  </>
+                )}
               </Flex>
               <Flex alignItems="center" height="100%">
-                {/* <AtomBox mr="12px" display={{ xs: "none", lg: "block" }}>
-                  <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
-                </AtomBox>
-                <Box mt="4px">
-                  <LangSelector
-                    currentLang={currentLang}
-                    langs={langs}
-                    setLang={setLang}
-                    buttonScale="xs"
-                    color="textSubtle"
-                    hideLanguage
-                  />
-                </Box> */}
                 {rightSide}
               </Flex>
             </StyledNav>

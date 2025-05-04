@@ -40,7 +40,6 @@ export const inputVariants = recipe({
     border: "none",
     flex: "1 1 auto",
     backgroundColor: "transparent",
-    fontSize: 16,
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -76,10 +75,19 @@ export const inputVariants = recipe({
         textAlign: "right",
       },
     },
+    fontSize: {
+      md: {
+        fontSize: 16,
+      },
+      lg: {
+        fontSize: 30,
+      },
+    },
   },
   defaultVariants: {
     align: "right",
     error: false,
+    fontSize: "md",
   },
 });
 
@@ -143,7 +151,7 @@ export const pageVariants = recipe({
     }),
     responsiveStyle({
       xs: {
-        minHeight: "100vh",
+        height: "calc(100vh - 56px)",
       },
       sm: {
         padding: "24px",

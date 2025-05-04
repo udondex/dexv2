@@ -1,6 +1,15 @@
 /* eslint-disable no-restricted-syntax */
 import { Currency, Token } from '@pancakeswap/sdk'
-import { Box, Input, Text, useMatchBreakpoints } from '@pancakeswap/uikit'
+import {
+  Box,
+  Input,
+  Text,
+  useMatchBreakpoints,
+  ModalTitle,
+  Heading,
+  ModalCloseButton,
+  ModalBackButton,
+} from '@pancakeswap/uikit'
 import { KeyboardEvent, RefObject, useCallback, useMemo, useRef, useState, useEffect } from 'react'
 import { useTranslation } from '@pancakeswap/localization'
 import { useDebounce } from '@pancakeswap/hooks'
@@ -19,6 +28,8 @@ import CurrencyList from './CurrencyList'
 import { createFilterToken, useSortedTokensByQuery } from './filtering'
 import useTokenComparator from './sorting'
 import { getSwapSound } from './swapSound'
+
+import { AutoRow } from '../Layout/Row'
 
 import ImportRow from './ImportRow'
 
@@ -126,11 +137,9 @@ function CurrencySearch({
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       onCurrencySelect(currency)
-      if (audioPlay) {
-        getSwapSound().play()
-      }
+      // console.log('Currency' + currency)
     },
-    [audioPlay, onCurrencySelect],
+    [onCurrencySelect],
   )
 
   // manage focus on modal show
@@ -174,14 +183,14 @@ function CurrencySearch({
   const getCurrencyListRows = useCallback(() => {
     if (searchToken && !searchTokenIsAdded && !hasFilteredInactiveTokens) {
       return (
-        <Column style={{ padding: '20px 0', height: '100%' }}>
+        <Column style={{ padding: '20px 8px', height: '100%', width: '100%' }}>
           <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
         </Column>
       )
     }
 
     return Boolean(filteredSortedTokens?.length) || hasFilteredInactiveTokens ? (
-      <Box margin="24px -24px">
+      <Box>
         <CurrencyList
           height={isMobile ? (showCommonBases ? height || 250 : height ? height + 80 : 350) : 390}
           showNative={showNative}
@@ -226,28 +235,33 @@ function CurrencySearch({
   return (
     <>
       <AutoColumn gap="16px">
-        <Row>
-          <Input
-            id="token-search-input"
-            placeholder={t('Search name or paste address')}
-            scale="lg"
-            autoComplete="off"
-            value={searchQuery}
-            ref={inputRef as RefObject<HTMLInputElement>}
-            onChange={handleInput}
-            onKeyDown={handleEnter}
-          />
-        </Row>
-        {showCommonBases && (
-          <CommonBases
-            chainId={chainId}
-            onSelect={handleCurrencySelect}
-            selectedCurrency={selectedCurrency}
-            commonBasesType={commonBasesType}
-          />
-        )}
+        <AutoColumn style={{ padding: '12px 24px 16px', backgroundColor: 'white' }} gap="12px">
+          <Row>
+            <Input
+              id="token-search-input"
+              placeholder={t('Search name or paste address')}
+              scale="lg"
+              autoComplete="off"
+              value={searchQuery}
+              ref={inputRef as RefObject<HTMLInputElement>}
+              onChange={handleInput}
+              onKeyDown={handleEnter}
+            />
+          </Row>
+
+          {/* Preset Common Base */}
+          {showCommonBases && (
+            <CommonBases
+              chainId={chainId}
+              onSelect={handleCurrencySelect}
+              selectedCurrency={selectedCurrency}
+              commonBasesType={commonBasesType}
+            />
+          )}
+        </AutoColumn>
       </AutoColumn>
-      {getCurrencyListRows()}
+      {/* Token List in modal */}
+      <div style={{ padding: '12px 0px' }}>{getCurrencyListRows()}</div>
     </>
   )
 }

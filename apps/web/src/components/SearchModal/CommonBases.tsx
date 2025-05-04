@@ -18,9 +18,9 @@ const ButtonWrapper = styled.div`
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
   border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.colors.dropdown)};
-  border-radius: 10px;
+  border-radius: 20px;
   display: flex;
-  padding: 6px;
+  padding: 6px 11px;
   align-items: center;
   :hover {
     cursor: ${({ disable }) => !disable && 'pointer'};
@@ -59,13 +59,7 @@ export default function CommonBases({
   const pinTokenDescText = commonBasesType === CommonBasesType.SWAP_LIMITORDER ? t('Common tokens') : t('Common bases')
 
   return (
-    <AutoColumn gap="md">
-      <AutoRow>
-        <Text fontSize="14px">{pinTokenDescText}</Text>
-        {commonBasesType === CommonBasesType.LIQUIDITY && (
-          <QuestionHelper text={t('These tokens are commonly paired with other tokens.')} ml="4px" />
-        )}
-      </AutoRow>
+    <AutoColumn gap="md" style={{ padding: '16px, 0px' }}>
       <RowWrapper>
         <ButtonWrapper>
           <BaseWrapper
@@ -82,9 +76,17 @@ export default function CommonBases({
         </ButtonWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] || [] : []).map((token: Token) => {
           const selected = selectedCurrency?.equals(token)
+          // console.log(SUGGESTED_BASES[chainId])
           return (
             <ButtonWrapper key={`buttonBase#${token.address}`}>
-              <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected}>
+              <BaseWrapper
+                onClick={() => {
+                  !selected && onSelect(token)
+                  // console.log('Selected' + selected)
+                  console.log(token)
+                }}
+                disable={selected}
+              >
                 <CurrencyLogo currency={token} style={{ marginRight: 8, borderRadius: '50%' }} />
                 <Text>{token.symbol}</Text>
               </BaseWrapper>
