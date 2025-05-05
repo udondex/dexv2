@@ -55,20 +55,20 @@ const config: (
       href: '/swap',
       showItemsOnMobile: false,
       items: [
-        {
-          label: t('Swap'),
-          href: '/swap',
-        },
+        // {
+        //   label: t('Swap'),
+        //   href: '/swap',
+        // },
         // {
         //   label: t('Limit'),
         //   href: '/limit-orders',
         //   supportChainIds: SUPPORT_ONLY_BSC,
         //   image: '/images/decorations/3d-coin.png',
         // },
-        {
-          label: t('Liquidity'),
-          href: '/liquidity',
-        },
+        // {
+        //   label: t('Liquidity'),
+        //   href: '/liquidity',
+        // },
         // {
         //   label: t('Perpetual'),
         //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(

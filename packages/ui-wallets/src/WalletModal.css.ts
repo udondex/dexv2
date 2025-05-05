@@ -37,7 +37,7 @@ export const modalWrapperClass = style([
       height: '490px',
     },
     lg: {
-      width: '792px',
+      width: '420px',
     },
   }),
 ])
@@ -51,7 +51,7 @@ export const desktopWalletSelectionClass = style(
       maxWidth: '360px',
     },
     lg: {
-      maxWidth: '408px',
+      maxWidth: '420px',
     },
   }),
 )
