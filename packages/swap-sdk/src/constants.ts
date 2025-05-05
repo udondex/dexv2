@@ -124,7 +124,7 @@ export const NATIVE: Record<
     decimals: 18,
   },
   [ChainId.BKC]: {
-    name: 'Bitkub Chain Native Token',
+    name: 'KUB Native Token',
     symbol: 'KUB',
     decimals: 18,
   },
