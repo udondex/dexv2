@@ -74,12 +74,14 @@ export default function Swap() {
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
             <StyledInputCurrencyWrapper pb={24} mt={isChartExpanded ? '24px' : '0'}>
               {/* <AppBody> */}
-              <SwapTab>
-                {(swapTypeState) =>
-                  swapTypeState === SwapType.STABLE_SWAP ? <StableSwapFormContainer /> : <SwapForm />
-                }
-              </SwapTab>
-              {/* </AppBody> */}
+              <div style={{ width: !isMobile ? '488px' : '100%' }}>
+                <SwapTab>
+                  {(swapTypeState) =>
+                    swapTypeState === SwapType.STABLE_SWAP ? <StableSwapFormContainer /> : <SwapForm />
+                  }
+                </SwapTab>
+                {/* </AppBody> */}
+              </div>
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
           {/* {isChartExpanded && (
