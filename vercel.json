@@ -1,7 +1,0 @@
-{
-  "buildCommand": "yarn build",
-  "outputDirectory": "apps/web/.next",
-  "framework": "nextjs",
-  "installCommand": "yarn install --frozen-lockfile",
-  "regions": ["iad1"]
-}
