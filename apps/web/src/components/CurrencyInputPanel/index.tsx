@@ -42,9 +42,8 @@ const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm'
     zapStyle &&
     css`
       padding: 8px;
-      background: ${theme.colors.background};
-      border: 1px solid ${theme.colors.cardBorder};
-      border-radius: ${zapStyle === 'zap' ? '0px' : '8px'} 8px 0px 0px;
+      background: ${theme.colors.white};
+      border-radius: 18px;
       height: auto;
     `};
 `
@@ -236,85 +235,89 @@ export default function CurrencyInputPanel({
       <InputPanel>
         <Container as="label" zapStyle={zapStyle} error={error}>
           <Flex alignItems="center" justifyContent="space-between">
-            {label !== 'To' ? <p>From</p> : <p>To</p>}
-            <Flex alignItems="center" style={{ gap: '10px' }}>
-              <div
-                onClick={() => {
-                  onCurrencySelect(kub)
-                  console.log('Clicked! KUB')
-                }}
-                style={{
-                  borderRadius: '50%',
-                  border: '4px solid #E5E7EB',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease-in-out',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              >
-                <img src="/KUB.png" alt="Share" width={22} height={22} className="rounded-full" />
-              </div>
-              <div
-                onClick={() => {
-                  onCurrencySelect(kkub)
-                  console.log('Clicked! KKUB')
-                }}
-                style={{
-                  borderRadius: '50%',
-                  border: '4px solid #E5E7EB',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease-in-out',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              >
-                <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
-              </div>
-              <div
-                onClick={() => {
-                  onCurrencySelect(kusdc)
-                  console.log('Clicked! KUSC')
-                }}
-                style={{
-                  borderRadius: '50%',
-                  border: '4px solid #E5E7EB',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease-in-out',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              >
-                <Image src="/KUSDC.png" alt="Share" width={22} height={22} className="rounded-full" />
-              </div>
-              <div
-                onClick={() => {
-                  onCurrencySelect(kusdt)
-                  console.log('Clicked! KUSDT')
-                }}
-                style={{
-                  borderRadius: '50%',
-                  border: '4px solid #E5E7EB',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease-in-out',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              >
-                <Image src="/KUSDT.png" alt="Share" width={22} height={22} className="rounded-full" />
-              </div>
-            </Flex>
+            {label == 'To' && <p>To</p>}
+            {label == 'From' && <p>From</p>}
+            {/* {label !== 'To' ? <p>From</p> : <p>To</p>} */}
+            {label && (
+              <Flex alignItems="center" style={{ gap: '10px' }}>
+                <div
+                  onClick={() => {
+                    onCurrencySelect(kub)
+                    console.log('Clicked! KUB')
+                  }}
+                  style={{
+                    borderRadius: '50%',
+                    border: '4px solid #E5E7EB',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                >
+                  <img src="/KUB.png" alt="Share" width={22} height={22} className="rounded-full" />
+                </div>
+                <div
+                  onClick={() => {
+                    onCurrencySelect(kkub)
+                    console.log('Clicked! KKUB')
+                  }}
+                  style={{
+                    borderRadius: '50%',
+                    border: '4px solid #E5E7EB',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                >
+                  <img src="/KKUB.png" alt="Share" width={22} height={22} className="rounded-full" />
+                </div>
+                <div
+                  onClick={() => {
+                    onCurrencySelect(kusdc)
+                    console.log('Clicked! KUSC')
+                  }}
+                  style={{
+                    borderRadius: '50%',
+                    border: '4px solid #E5E7EB',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                >
+                  <Image src="/KUSDC.png" alt="Share" width={22} height={22} className="rounded-full" />
+                </div>
+                <div
+                  onClick={() => {
+                    onCurrencySelect(kusdt)
+                    console.log('Clicked! KUSDT')
+                  }}
+                  style={{
+                    borderRadius: '50%',
+                    border: '4px solid #E5E7EB',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    transition: 'transform 0.2s ease-in-out',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                >
+                  <Image src="/KUSDT.png" alt="Share" width={22} height={22} className="rounded-full" />
+                </div>
+              </Flex>
+            )}
           </Flex>
           <LabelRow>
             <NumericalInput
@@ -414,7 +417,7 @@ export default function CurrencyInputPanel({
                 ~{formatNumber(amountInDollar)} USD
               </Text>
             )} */}
-              {account && currency && selectedCurrencyBalance?.greaterThan(0) && !disabled && label !== 'To' && (
+              {!disabled && label !== 'To' && label && (
                 <PercentageContainer>
                   {showQuickInputButton &&
                     onPercentInput &&

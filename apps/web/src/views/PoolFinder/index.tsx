@@ -97,7 +97,8 @@ export default function PoolFinder() {
     <Page>
       <AppBody>
         <AppHeader title={t('Import Pool')} subtitle={t('Import an existing pool')} backTo="/liquidity" />
-        <AutoColumn style={{ padding: '1rem' }} gap="md">
+        {/* need improve for darkmode */}
+        <AutoColumn style={{ padding: '1rem', backgroundColor: 'white' }} gap="md">
           <StyledButton
             endIcon={<ChevronDownIcon />}
             onClick={() => {

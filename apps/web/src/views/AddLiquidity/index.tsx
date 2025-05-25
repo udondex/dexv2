@@ -604,7 +604,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
               )}
               backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
             />
-            <CardBody>
+            <CardBody style={{ backgroundColor: 'white', height: '100%' }}>
               <AutoColumn gap="20px">
                 {noLiquidity && (
                   <ColumnCenter>

@@ -14,7 +14,7 @@ import { AppHeader, AppBody } from '../../components/App'
 import Page from '../Page'
 
 const Body = styled(CardBody)`
-  background-color: ${({ theme }) => theme.colors.dropdownDeep};
+  background-color: ${({ theme }) => theme.colors.backgroundDisabled};
 `
 
 export default function Pool() {
@@ -128,7 +128,8 @@ export default function Pool() {
             </Flex>
           )}
         </Body>
-        <CardFooter style={{ textAlign: 'center' }}>
+        {/* need improve for darkmode */}
+        <CardFooter style={{ textAlign: 'center', backgroundColor: 'white' }}>
           <Link href="/add" passHref>
             <Button id="join-pool-button" width="100%" startIcon={<AddIcon color="invertedContrast" />}>
               {t('Add Liquidity')}
