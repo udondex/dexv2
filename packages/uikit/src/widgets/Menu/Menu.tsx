@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
+  background: ${({ theme }) => theme.colors.gradientBubblegum};
 `;
 
 const StyledNav = styled.nav`
@@ -29,8 +30,8 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: ${MENU_HEIGHT}px;
-  background-color: rgba(255, 255, 255, 0.7);
+  height: 52px;
+  background: ${({ theme }) => theme.colors.white};
   transform: translate3d(0, 0, 0);
   padding: 1px 20px 1px 20px;
   border-radius: 20px;
@@ -46,7 +47,6 @@ const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
   width: 100%;
   z-index: 20;
   padding: 9px 12px 9px 1rem;
-  background: ${({ theme }) => theme.modal.background};
 `;
 
 const TopBannerContainer = styled.div<{ height: number }>`
