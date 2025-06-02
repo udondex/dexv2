@@ -49,7 +49,7 @@ const NetworkSelect = ({ switchNetwork, chainId }) => {
             onClick={() => chain.id !== chainId && switchNetwork(chain.id)}
           >
             <ChainLogo chainId={chain.id} />
-            <Text color={chain.id === chainId ? 'secondary' : 'text'} bold={chain.id === chainId} pl="12px">
+            <Text color={chain.id === chainId ? 'primary' : 'text'} bold={chain.id === chainId} pl="12px">
               {chain.name}
             </Text>
           </UserMenuItem>
