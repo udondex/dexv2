@@ -140,26 +140,27 @@ export const pageVariants = recipe({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      width: "100%",
+      width: "auto",
       height: "100%",
       background: "gradientBubblegum",
       padding: "16px",
-      paddingBottom: "0",
+      paddingBottom: "16px",
     }),
     style({
       backgroundSize: "auto",
+      boxSizing: "content-box",
     }),
     responsiveStyle({
       xs: {
-        height: "calc(100vh - 56px)",
+        height: "auto",
       },
       sm: {
         padding: "24px",
-        paddingBottom: "0",
+        paddingBottom: "24px",
       },
       lg: {
         padding: "32px",
-        paddingBottom: "0",
+        paddingBottom: "24px",
       },
     }),
   ]),
@@ -172,7 +173,7 @@ export const pageVariants = recipe({
     noMinHeight: {
       true: responsiveStyle({
         xs: {
-          minHeight: "initial!important",
+          minHeight: "100vh",
         },
       }),
     },

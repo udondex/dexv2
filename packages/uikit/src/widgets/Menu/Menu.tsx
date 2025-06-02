@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   background: ${({ theme }) => theme.colors.gradientBubblegum};
+  padding-bottom: 40px;
 `;
 
 const StyledNav = styled.nav`

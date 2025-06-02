@@ -46,7 +46,7 @@ export const StyledCard = styled.div<StyledCardProps>`
   border-radius: ${({ theme }) => theme.radii.card};
   color: ${({ theme, isDisabled }) => theme.colors[isDisabled ? "textDisabled" : "text"]};
   overflow: hidden;
-  position: fixed;
+  position: relative;
 
   ${({ isActive }) =>
     isActive &&
