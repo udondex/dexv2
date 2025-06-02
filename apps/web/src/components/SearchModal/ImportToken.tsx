@@ -32,7 +32,7 @@ function ImportToken({ tokens, handleCurrencySelect }: ImportProps) {
   const inactiveTokenList = useCombinedInactiveList()
 
   return (
-    <AutoColumn gap="lg">
+    <AutoColumn gap="lg" style={{ padding: '16px' }}>
       <Message variant="warning">
         <Text>
           {t(
