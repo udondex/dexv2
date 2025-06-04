@@ -604,7 +604,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
               )}
               backTo={canZap ? () => setSteps(Steps.Choose) : '/liquidity'}
             />
-            <CardBody>
+            <CardBody style={{ backgroundColor: 'white', height: 'auto' }}>
               <AutoColumn gap="20px">
                 {noLiquidity && (
                   <ColumnCenter>
@@ -802,7 +802,7 @@ export default function AddLiquidity({ currencyA, currencyB }) {
                 )}
 
                 <RowBetween>
-                  <Text bold fontSize="12px" color="secondary">
+                  <Text bold fontSize="12px" color="primary">
                     {t('Slippage Tolerance')}
                   </Text>
                   <Text bold color="primary">

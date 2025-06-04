@@ -34,14 +34,14 @@ export const PageMeta: React.FC<React.PropsWithChildren<{ symbol?: string }>> = 
 
   const pageMeta = getCustomMeta(pathname, t, locale) || {}
   const { title, description, image } = { ...DEFAULT_META, ...pageMeta }
-  let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
-  if (symbol) {
-    pageTitle = [symbol, title].join(' - ')
-  }
+  // let pageTitle = cakePriceUsdDisplay ? [title, cakePriceUsdDisplay].join(' - ') : title
+  // if (symbol) {
+  //   pageTitle = [symbol, title].join(' - ')
+  // }
 
   return (
     <Head>
-      <title>{pageTitle}</title>
+      <title>{title}</title>
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />

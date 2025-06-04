@@ -23,6 +23,9 @@ import Manage from './Manage'
 import ImportList from './ImportList'
 import { CurrencyModalView } from './types'
 
+import Column, { AutoColumn } from '../Layout/Column'
+import { AutoRow } from '../Layout/Row'
+
 const Footer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.backgroundAlt};
@@ -31,8 +34,8 @@ const Footer = styled.div`
 const StyledModalContainer = styled(ModalContainer)`
   width: 100%;
   min-width: 320px;
-  max-width: 420px !important;
-  min-height: calc(var(--vh, 1vh) * 90);
+  max-width: 488px !important;
+  min-height: calc(var(--vh, 1vh) * 80);
   ${({ theme }) => theme.mediaQueries.md} {
     min-height: auto;
   }
@@ -70,6 +73,8 @@ export default function CurrencySearchModal({
     (currency: Currency) => {
       onDismiss?.()
       onCurrencySelect(currency)
+      console.log('2')
+      console.log(currency)
     },
     [onDismiss, onCurrencySelect],
   )
@@ -120,51 +125,53 @@ export default function CurrencySearchModal({
       ref={wrapperRef}
     >
       <ModalHeader>
-        <ModalTitle>
-          {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
-          <Heading>{config[modalView].title}</Heading>
-        </ModalTitle>
-        <ModalCloseButton onDismiss={onDismiss} />
+        <AutoColumn style={{ width: '100%' }}>
+          <AutoRow style={{ padding: '12px 8px 0px 8px', backgroundColor: 'white' }}>
+            <ModalTitle style={{ padding: '0px 0px 0px 14px' }}>
+              {config[modalView].onBack && <ModalBackButton onBack={config[modalView].onBack} />}
+              <Heading>{config[modalView].title}</Heading>
+            </ModalTitle>
+            <ModalCloseButton onDismiss={onDismiss} />
+          </AutoRow>
+          {modalView === CurrencyModalView.search ? (
+            <CurrencySearch
+              onCurrencySelect={handleCurrencySelect}
+              selectedCurrency={selectedCurrency}
+              otherSelectedCurrency={otherSelectedCurrency}
+              showCommonBases={showCommonBases}
+              commonBasesType={commonBasesType}
+              showImportView={() => setModalView(CurrencyModalView.importToken)}
+              setImportToken={setImportToken}
+              height={height}
+            />
+          ) : modalView === CurrencyModalView.importToken && importToken ? (
+            <ImportToken tokens={[importToken]} handleCurrencySelect={handleCurrencySelect} />
+          ) : modalView === CurrencyModalView.importList && importList && listURL ? (
+            <ImportList list={importList} listURL={listURL} onImport={() => setModalView(CurrencyModalView.manage)} />
+          ) : modalView === CurrencyModalView.manage ? (
+            <Manage
+              setModalView={setModalView}
+              setImportToken={setImportToken}
+              setImportList={setImportList}
+              setListUrl={setListUrl}
+            />
+          ) : (
+            ''
+          )}
+        </AutoColumn>
       </ModalHeader>
-      <StyledModalBody>
-        {modalView === CurrencyModalView.search ? (
-          <CurrencySearch
-            onCurrencySelect={handleCurrencySelect}
-            selectedCurrency={selectedCurrency}
-            otherSelectedCurrency={otherSelectedCurrency}
-            showCommonBases={showCommonBases}
-            commonBasesType={commonBasesType}
-            showImportView={() => setModalView(CurrencyModalView.importToken)}
-            setImportToken={setImportToken}
-            height={height}
-          />
-        ) : modalView === CurrencyModalView.importToken && importToken ? (
-          <ImportToken tokens={[importToken]} handleCurrencySelect={handleCurrencySelect} />
-        ) : modalView === CurrencyModalView.importList && importList && listURL ? (
-          <ImportList list={importList} listURL={listURL} onImport={() => setModalView(CurrencyModalView.manage)} />
-        ) : modalView === CurrencyModalView.manage ? (
-          <Manage
-            setModalView={setModalView}
-            setImportToken={setImportToken}
-            setImportList={setImportList}
-            setListUrl={setListUrl}
-          />
-        ) : (
-          ''
-        )}
-        {modalView === CurrencyModalView.search && (
-          <Footer>
-            <Button
-              scale="sm"
-              variant="text"
-              onClick={() => setModalView(CurrencyModalView.manage)}
-              className="list-token-manage-button"
-            >
-              {t('Manage Tokens')}
-            </Button>
-          </Footer>
-        )}
-      </StyledModalBody>
+      {modalView === CurrencyModalView.search && (
+        <Footer style={{ padding: '12px' }}>
+          <Button
+            scale="sm"
+            variant="text"
+            onClick={() => setModalView(CurrencyModalView.manage)}
+            className="list-token-manage-button"
+          >
+            {t('Manage Tokens')}
+          </Button>
+        </Footer>
+      )}
     </StyledModalContainer>
   )
 }

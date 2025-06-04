@@ -46,7 +46,7 @@ import { StableConfigContext } from '../hooks/useStableConfig'
 const Label = styled(Text)`
   font-size: 12px;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 const SwitchIconButton = styled(IconButton)`

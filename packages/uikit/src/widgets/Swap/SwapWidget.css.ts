@@ -40,7 +40,6 @@ export const inputVariants = recipe({
     border: "none",
     flex: "1 1 auto",
     backgroundColor: "transparent",
-    fontSize: 16,
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -76,10 +75,19 @@ export const inputVariants = recipe({
         textAlign: "right",
       },
     },
+    fontSize: {
+      md: {
+        fontSize: 16,
+      },
+      lg: {
+        fontSize: 30,
+      },
+    },
   },
   defaultVariants: {
     align: "right",
     error: false,
+    fontSize: "md",
   },
 });
 
@@ -132,26 +140,27 @@ export const pageVariants = recipe({
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      width: "100%",
+      width: "auto",
       height: "100%",
       background: "gradientBubblegum",
       padding: "16px",
-      paddingBottom: "0",
+      paddingBottom: "16px",
     }),
     style({
       backgroundSize: "auto",
+      boxSizing: "content-box",
     }),
     responsiveStyle({
       xs: {
-        minHeight: "100vh",
+        height: "auto",
       },
       sm: {
         padding: "24px",
-        paddingBottom: "0",
+        paddingBottom: "24px",
       },
       lg: {
         padding: "32px",
-        paddingBottom: "0",
+        paddingBottom: "24px",
       },
     }),
   ]),
@@ -164,7 +173,7 @@ export const pageVariants = recipe({
     noMinHeight: {
       true: responsiveStyle({
         xs: {
-          minHeight: "initial!important",
+          minHeight: "100vh",
         },
       }),
     },

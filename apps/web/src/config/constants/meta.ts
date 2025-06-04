@@ -4,7 +4,7 @@ import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
   title: 'UdonSwap',
-  description: 'Seamless DEX on Bitkub Chain',
+  description: 'Seamless DEX on KUB',
   image: '/images/og-image.png',
 }
 

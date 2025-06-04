@@ -41,9 +41,7 @@ export const RequireKYCModal = NiceModal.create(() => {
   return (
     <Modal title={t('Verification Required')} onDismiss={handleDismiss} headerBackground="gradientCardHeader">
       <StyledModalBody>
-        <Text>
-          {t('To proceed with this transaction, you need to complete the verification process on Bitkub Chain.')}
-        </Text>
+        <Text>{t('To proceed with this transaction, you need to complete the verification process on KUB.')}</Text>
 
         <StyledBox>
           <Text color="warning" bold mb="8px">

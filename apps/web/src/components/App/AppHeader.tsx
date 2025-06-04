@@ -19,6 +19,7 @@ const AppHeaderContainer = styled(Flex)`
   justify-content: space-between;
   padding: 24px;
   width: 100%;
+  background-color: ${({ theme }) => theme.colors.white}; // need improve for darkmode
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
 `
 

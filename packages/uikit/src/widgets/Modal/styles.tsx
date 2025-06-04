@@ -13,7 +13,6 @@ export const ModalHeader = styled.div<{ background?: string }>`
   background: transparent;
   border-bottom: 1px solid ${({ theme }) => theme.colors.cardBorder};
   display: flex;
-  padding: 12px 24px;
 
   ${({ theme }) => theme.mediaQueries.md} {
     background: ${({ background }) => background || "transparent"};

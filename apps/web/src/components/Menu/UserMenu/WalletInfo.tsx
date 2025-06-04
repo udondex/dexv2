@@ -23,7 +23,7 @@ import { formatBigNumber, getFullDisplayBalance } from '@pancakeswap/utils/forma
 import { useBalance } from 'wagmi'
 
 const COLORS = {
-  ETH: '#627EEA',
+  ETH: '#5E6574',
   BNB: '#14151A',
 }
 
@@ -54,7 +54,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowNativeBalance, onDismiss 
 
   return (
     <>
-      <Text color="secondary" fontSize="12px" textTransform="uppercase" fontWeight="bold" mb="8px">
+      <Text color="primary" fontSize="12px" textTransform="uppercase" fontWeight="bold" mb="8px">
         {t('Your Address')}
       </Text>
       <CopyAddress tooltipMessage={t('Copied')} account={account} mb="24px" />

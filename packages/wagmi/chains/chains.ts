@@ -117,10 +117,10 @@ export const bscTest: Chain = {
 
 export const bkcTestnet: Chain = {
   id: 96,
-  name: 'Bitkub Chain',
+  name: 'KUB',
   network: 'bkc',
   nativeCurrency: {
-    name: 'Bitkub Coin',
+    name: 'KUB Coin',
     symbol: 'KUB',
     decimals: 18,
   },
@@ -130,7 +130,7 @@ export const bkcTestnet: Chain = {
   },
   blockExplorers: {
     default: {
-      name: 'Bitkub Chain Explorer',
+      name: 'KUB Explorer',
       url: 'https://bkcscan.com',
     },
   },

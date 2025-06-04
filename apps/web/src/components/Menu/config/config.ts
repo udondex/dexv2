@@ -11,6 +11,8 @@ import {
   NftFillIcon,
   MoreIcon,
   DropdownMenuItems,
+  TradeIcon,
+  WalletIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
@@ -55,20 +57,56 @@ const config: (
       href: '/swap',
       showItemsOnMobile: false,
       items: [
-        {
-          label: t('Swap'),
-          href: '/swap',
-        },
+        // {
+        //   label: t('Swap'),
+        //   href: '/swap',
+        // },
         // {
         //   label: t('Limit'),
         //   href: '/limit-orders',
         //   supportChainIds: SUPPORT_ONLY_BSC,
         //   image: '/images/decorations/3d-coin.png',
         // },
-        {
-          label: t('Liquidity'),
-          href: '/liquidity',
-        },
+        // {
+        //   label: t('Liquidity'),
+        //   href: '/liquidity',
+        // },
+        // {
+        //   label: t('Perpetual'),
+        //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
+        //     isDark,
+        //   )}`,
+        //   supportChainIds: SUPPORT_ONLY_BSC,
+        //   type: DropdownMenuItemType.EXTERNAL_LINK,
+        // },
+        // {
+        //   label: t('Bridge'),
+        //   href: 'https://bridge.pancakeswap.finance/',
+        //   type: DropdownMenuItemType.EXTERNAL_LINK,
+        // },
+      ].map((item) => addMenuItemSupported(item, chainId)),
+    },
+    {
+      label: t('Liquidity'),
+      icon: EarnIcon,
+      fillIcon: EarnFillIcon,
+      href: '/liquidity',
+      showItemsOnMobile: false,
+      items: [
+        // {
+        //   label: t('Swap'),
+        //   href: '/swap',
+        // },
+        // {
+        //   label: t('Limit'),
+        //   href: '/limit-orders',
+        //   supportChainIds: SUPPORT_ONLY_BSC,
+        //   image: '/images/decorations/3d-coin.png',
+        // },
+        // {
+        //   label: t('Liquidity'),
+        //   href: '/liquidity',
+        // },
         // {
         //   label: t('Perpetual'),
         //   href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
@@ -174,7 +212,7 @@ const config: (
       label: 'Buy Crypto',
       href: 'https://bitkubchain.banxa.com',
       isNewTab: true,
-      icon: MoreIcon,
+      icon: WalletIcon,
       type: DropdownMenuItemType.EXTERNAL_LINK,
       showItemsOnMobile: false,
       items: [],

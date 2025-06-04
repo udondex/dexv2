@@ -92,7 +92,7 @@ export default function ManageTokens({
 
   return (
     <Wrapper>
-      <Column style={{ width: '100%', flex: '1 1' }}>
+      <Column style={{ width: '100%', flex: '1 1', padding: '10px' }}>
         <AutoColumn gap="14px">
           <Row>
             <Input
@@ -117,7 +117,7 @@ export default function ManageTokens({
           )}
         </AutoColumn>
         {tokenList}
-        <Footer>
+        <Footer style={{ padding: '20px' }}>
           <Text bold color="textSubtle">
             {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('Custom Token') : t('Custom Tokens')}
           </Text>

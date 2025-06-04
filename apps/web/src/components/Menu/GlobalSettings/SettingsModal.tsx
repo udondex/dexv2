@@ -159,7 +159,7 @@ const SettingsModal: React.FC<React.PropsWithChildren<InjectedModalProps>> = ({ 
         {mode === SettingsMode.SWAP_LIQUIDITY && (
           <>
             <Flex pt="3px" flexDirection="column">
-              <Text bold textTransform="uppercase" fontSize="18px" color="secondary" mb="24px">
+              <Text bold textTransform="uppercase" fontSize="18px" color="primary" mb="24px">
                 {t('Swaps & Liquidity')}
               </Text>
               <Flex justifyContent="space-between" alignItems="center" mb="24px">

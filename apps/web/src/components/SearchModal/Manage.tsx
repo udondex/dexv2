@@ -28,7 +28,7 @@ export default function Manage({
   const { t } = useTranslation()
 
   return (
-    <ModalBody>
+    <ModalBody style={{ padding: '12px' }}>
       <StyledButtonMenu
         activeIndex={showLists ? 0 : 1}
         onItemClick={() => setShowLists((prev) => !prev)}

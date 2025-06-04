@@ -6,7 +6,6 @@ export const Wrapper = styled(Flex)`
   position: relative;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
 `
 
 export const ArrowWrapper = styled.div<{ clickable: boolean }>`

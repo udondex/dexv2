@@ -1,18 +1,19 @@
-import { Currency } from '@pancakeswap/sdk'
-import { BottomDrawer, Flex, useMatchBreakpoints } from '@pancakeswap/uikit'
-import { AppBody } from 'components/App'
 import { useContext } from 'react'
+import { Currency } from '@pancakeswap/sdk'
+import { Box, Flex, BottomDrawer, useMatchBreakpoints, Swap as SwapUI } from '@pancakeswap/uikit'
+import { EXCHANGE_DOCS_URLS } from 'config/constants'
+import { AppBody } from 'components/App'
 
 import { useCurrency } from '../../hooks/Tokens'
 import { Field } from '../../state/swap/actions'
-import { useSingleTokenSwapInfo, useSwapState } from '../../state/swap/hooks'
+import { useSwapState, useSingleTokenSwapInfo } from '../../state/swap/hooks'
 import Page from '../Page'
 import PriceChartContainer from './components/Chart/PriceChartContainer'
 
 import SwapForm from './components/SwapForm'
-import SwapTab, { SwapType } from './components/SwapTab'
 import StableSwapFormContainer from './StableSwap'
 import { StyledInputCurrencyWrapper, StyledSwapContainer } from './styles'
+import SwapTab, { SwapType } from './components/SwapTab'
 import { SwapFeaturesContext } from './SwapFeaturesContext'
 
 export default function Swap() {
@@ -37,7 +38,7 @@ export default function Swap() {
 
   return (
     <Page removePadding={isChartExpanded} hideFooterOnDesktop={isChartExpanded}>
-      <Flex width={['328px', , '100%']} height="100%" justifyContent="center" position="relative">
+      <Flex width={['488px', , '100%']} height="100%" justifyContent="center" position="relative">
         {!isMobile && isChartSupported && (
           <PriceChartContainer
             inputCurrencyId={inputCurrencyId}
@@ -72,13 +73,15 @@ export default function Swap() {
         <Flex flexDirection="column">
           <StyledSwapContainer $isChartExpanded={isChartExpanded}>
             <StyledInputCurrencyWrapper pb={24} mt={isChartExpanded ? '24px' : '0'}>
-              <AppBody>
+              {/* <AppBody> */}
+              <div style={{ width: !isMobile ? '488px' : '100%' }}>
                 <SwapTab>
                   {(swapTypeState) =>
                     swapTypeState === SwapType.STABLE_SWAP ? <StableSwapFormContainer /> : <SwapForm />
                   }
                 </SwapTab>
-              </AppBody>
+                {/* </AppBody> */}
+              </div>
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
           {/* {isChartExpanded && (
