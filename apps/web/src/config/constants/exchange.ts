@@ -9,7 +9,7 @@ export const ROUTER_ADDRESS: ChainMap<string> = {
   [ChainId.GOERLI]: '0xEfF92A263d31888d860bD50809A8D171709b7b1c',
   [ChainId.BSC]: '0x10ED43C718714eb63d5aA57B78B54704E256024E',
   [ChainId.BSC_TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
-  [ChainId.BKC]: '0xC26c6B91589D0B76A206603a273cEA039a302342',
+  [ChainId.BKC]: '0x0A533C97a6A097A6a8E250CeABA0089AC3152Ed4',
 }
 
 // used to construct intermediary pairs for trading
@@ -27,7 +27,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     bscTokens.usdc,
   ],
   [ChainId.BSC_TESTNET]: [bscTestnetTokens.wbnb, bscTestnetTokens.cake, bscTestnetTokens.busd],
-  [ChainId.BKC]: [bkcTokens.kkub, bkcTokens.usdt],
+  [ChainId.BKC]: [bkcTokens.kkub, bkcTokens.kusdt],
 }
 
 /**
