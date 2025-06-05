@@ -210,7 +210,7 @@ const config: (
     },
     {
       label: 'v1 deprecated',
-      href: 'https://v1.udonswap.org/',
+      href: 'https://v1.udonswap.io/',
       isNewTab: true,
       icon: MoreIcon,
       type: DropdownMenuItemType.EXTERNAL_LINK,

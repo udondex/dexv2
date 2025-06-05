@@ -174,7 +174,7 @@ const Menu: React.FC<React.PropsWithChildren<NavProps>> = ({
                     <a href="https://bitkubchain.banxa.com/" target="_blank" rel="noopener noreferrer">
                       Buy Crypto
                     </a>
-                    <a href="https://v1.udonswap.org/" target="_blank" rel="noopener noreferrer" style={{ color: "red", fontWeight: "bold" }}>
+                    <a href="https://v1.udonswap.io/" target="_blank" rel="noopener noreferrer" style={{ color: "red", fontWeight: "bold" }}>
                       v1 deprecated
                     </a>
                   </>
