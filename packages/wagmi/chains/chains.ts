@@ -131,7 +131,7 @@ export const bkcTestnet: Chain = {
   blockExplorers: {
     default: {
       name: 'KUB Explorer',
-      url: 'https://bkcscan.com',
+      url: 'https://kubscan.com',
     },
   },
   multicall: {

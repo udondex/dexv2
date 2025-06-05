@@ -5,20 +5,11 @@ import {
   SwapFillIcon,
   EarnFillIcon,
   EarnIcon,
-  TrophyIcon,
-  TrophyFillIcon,
-  NftIcon,
-  NftFillIcon,
   MoreIcon,
   DropdownMenuItems,
-  TradeIcon,
   WalletIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from '@pancakeswap/localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
-import { perpLangMap } from 'utils/getPerpetualLanguageCode'
-import { perpTheme } from 'utils/getPerpetualTheme'
-import { SUPPORT_ONLY_BSC } from 'config/constants/supportChains'
 import { StringMappingType } from 'typescript'
 
 export type ConfigMenuDropDownItemsType = DropdownMenuItems & { hideSubNav?: boolean }
@@ -213,6 +204,15 @@ const config: (
       href: 'https://bitkubchain.banxa.com',
       isNewTab: true,
       icon: WalletIcon,
+      type: DropdownMenuItemType.EXTERNAL_LINK,
+      showItemsOnMobile: false,
+      items: [],
+    },
+    {
+      label: 'v1 deprecated',
+      href: 'https://v1.udonswap.org/',
+      isNewTab: true,
+      icon: MoreIcon,
       type: DropdownMenuItemType.EXTERNAL_LINK,
       showItemsOnMobile: false,
       items: [],
