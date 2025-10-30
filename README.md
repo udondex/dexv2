@@ -55,7 +55,6 @@ yarn turbo run build --filter=aptos-web
 ```
 </details>
 
-
 ## Packages
 
 | Package                                                       | Description                                                                                                            |
